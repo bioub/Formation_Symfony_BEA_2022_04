@@ -23,7 +23,7 @@ Encore
     .addEntry('app', './assets/app.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
-    .enableStimulusBridge('./assets/controllers.json')
+    // .enableStimulusBridge('./assets/controllers.json')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -55,6 +55,7 @@ Encore
         config.corejs = 3;
     })
 
+    .enableVueLoader()
     // enables Sass/SCSS support
     //.enableSassLoader()
 

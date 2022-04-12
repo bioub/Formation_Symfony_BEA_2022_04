@@ -2,15 +2,16 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/hello')]
-class HelloController
+#[Route('/')]
+class HelloController extends AbstractController
 {
-    #[Route('/world')]
-    public function helloWorld()
+    #[Route('/')]
+    public function index()
     {
 //        $res = new Response();
 //        $res->setStatusCode(200);
@@ -23,8 +24,8 @@ class HelloController
         return $res;
     }
 
-    #[Route('/{name}', requirements: ['name' => '\p{L}+'])]
-    public function index(string $name)
+    #[Route('/hello/{name}', requirements: ['name' => '\p{L}+'])]
+    public function hello(string $name)
     {
 //        $res = new Response();
 //        $res->setStatusCode(200);
@@ -37,7 +38,9 @@ class HelloController
         //return $res;
 
 
-        return new JsonResponse(['msg' => 'Hello ' . $name]);
+
+        // return new JsonResponse(['msg' => 'Hello ' . $name]);
+        return $this->json(['msg' => 'Hello ' . $name]);
     }
 
 
