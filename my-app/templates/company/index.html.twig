@@ -4,4 +4,10 @@
 
 {% block body %}
     <h2>Liste des sociétés</h2>
+
+    <ul>
+        {% for c in companies %}
+        <li>{{ c.name }}</li>
+        {% endfor %}
+    </ul>
 {% endblock %}
