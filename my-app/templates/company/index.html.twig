@@ -5,6 +5,8 @@
 {% block body %}
     <h2>Liste des sociétés</h2>
 
+    {{ dump(companies) }}
+
     <ul>
         {% for c in companies %}
         <li>{{ c.name }}</li>

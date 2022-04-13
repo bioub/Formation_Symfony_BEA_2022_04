@@ -4,4 +4,20 @@
 
 {% block body %}
     <h2>Détails d'un contact</h2>
+    <p>
+        Prénom : {{ contact.firstName }}
+    </p>
+    <p>
+        Nom : {{ contact.lastName }}
+    </p>
+    {% if contact.email %}
+    <p>
+        Email : {{ contact.email }}
+    </p>
+    {% endif %}
+    {% if contact.phone %}
+    <p>
+        Téléphone : {{ contact.phone }}
+    </p>
+    {% endif %}
 {% endblock %}

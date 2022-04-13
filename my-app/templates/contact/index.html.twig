@@ -4,7 +4,15 @@
 
 {% block body %}
     <h2>Liste des contacts</h2>
-    <p>Controller name : {{ controller_name }}</p>
+    <ul>
+        {% for c in contacts %}
+        <li>
+            <a href="{{ path('app_contact_show', {'id': c.id}) }}">
+                {{ c.firstName }} {{ c.lastName }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
 
 {% block stylesheets %}
