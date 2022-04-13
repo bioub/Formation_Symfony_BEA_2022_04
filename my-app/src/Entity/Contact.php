@@ -2,10 +2,19 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\ContactRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
+#[ApiResource]
+#[ApiFilter(SearchFilter::class, properties:["firstName"=> "ipartial", "lastName"=> "iword_start"])]
 class Contact
 {
     #[ORM\Id]
@@ -25,8 +34,18 @@ class Contact
     #[ORM\Column(type: 'string', length: 20, nullable: true)]
     private $phone;
 
-    #[ORM\ManyToOne(targetEntity: Company::class, fetch: 'EAGER', inversedBy: 'contacts')]
+    #[Ignore]
+    #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'contacts')]
     private $company;
+
+    #[ORM\ManyToMany(targetEntity: Tag::class)]
+
+    private $tags;
+
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -89,6 +108,30 @@ class Contact
     public function setCompany(?Company $company): self
     {
         $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Tag>
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Tag $tag): self
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+        }
+
+        return $this;
+    }
+
+    public function removeTag(Tag $tag): self
+    {
+        $this->tags->removeElement($tag);
 
         return $this;
     }

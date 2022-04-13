@@ -18,6 +18,12 @@
             <a href="{{ path('app_hello_index') }}">Home</a>
             <a href="{{ path('app_contact_index') }}">Contacts</a>
             <a href="{{ path('app_company_index') }}">Companies</a>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                Hello {{ app.user.email }}
+                <a href="{{ path('app_logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ path('login') }}">Login</a>
+            {% endif %}
         </nav>
         {% block body %}{% endblock %}
         <hr>

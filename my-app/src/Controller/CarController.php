@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Car;
 use App\Form\CarType;
 use App\Repository\CarRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,6 +48,7 @@ class CarController extends AbstractController
         ]);
     }
 
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route('/{id}/edit', name: 'app_car_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Car $car, CarRepository $carRepository): Response
     {

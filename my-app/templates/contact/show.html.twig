@@ -28,4 +28,13 @@
             Société : {{ contact.company.name }}
         </p>
     {% endif %}
+
+    {% if contact.tags | length %}
+        <p>
+            Tags :
+            {% for t in contact.tags %}
+            <span>{{ t.name }}</span>
+            {% endfor %}
+        </p>
+    {% endif %}
 {% endblock %}

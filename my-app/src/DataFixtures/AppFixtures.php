@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Car;
 use App\Entity\Company;
 use App\Entity\Contact;
+use App\Entity\Tag;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -27,6 +28,14 @@ class AppFixtures extends Fixture
             ->setPostCode('75017');
         $manager->persist($company2);
 
+        $tag1 = new Tag();
+        $tag1->setName('Amis');
+        $manager->persist($tag1);
+
+        $tag2 = new Tag();
+        $tag2->setName('Collègues');
+        $manager->persist($tag2);
+
         for ($i=0; $i<5; $i++) {
             $contact = new Contact();
             $contact->setFirstName($faker->firstName);
@@ -48,6 +57,11 @@ class AppFixtures extends Fixture
             if ($companyIndex = mt_rand(0, 2)) {
                 $companyVariable = "company$companyIndex";
                 $contact->setCompany($$companyVariable);
+            }
+
+            for ($j=0; $j<mt_rand(0, 2); $j++) {
+                $tagVariable = "tag" . mt_rand(1, 2);
+                $contact->addTag($$tagVariable);
             }
 
             $manager->persist($contact);

@@ -33,7 +33,7 @@ class ContactController extends AbstractController
     #[Route('/{id}', methods: ['GET'])]
     public function show(Contact $contact): Response
     {
-        var_dump($contact);
+        // dd($contact);
 
         return $this->render('contact/show.html.twig', [
             'contact' => $contact,
