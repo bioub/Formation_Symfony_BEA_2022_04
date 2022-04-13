@@ -7,6 +7,7 @@ use App\Repository\ContactRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\VarDumper\VarDumper;
 
 #[Route('/contacts', requirements: ['id' => '[1-9][0-9]*'])]
 class ContactController extends AbstractController
@@ -32,6 +33,8 @@ class ContactController extends AbstractController
     #[Route('/{id}', methods: ['GET'])]
     public function show(Contact $contact): Response
     {
+        var_dump($contact);
+
         return $this->render('contact/show.html.twig', [
             'contact' => $contact,
         ]);

@@ -25,6 +25,9 @@ class Contact
     #[ORM\Column(type: 'string', length: 20, nullable: true)]
     private $phone;
 
+    #[ORM\ManyToOne(targetEntity: Company::class, fetch: 'EAGER', inversedBy: 'contacts')]
+    private $company;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -77,4 +80,17 @@ class Contact
 
         return $this;
     }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
 }

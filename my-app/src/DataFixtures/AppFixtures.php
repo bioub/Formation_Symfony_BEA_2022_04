@@ -18,14 +18,14 @@ class AppFixtures extends Fixture
         // $product = new Product();
         // $manager->persist($product);
 
-        $bea = new Company();
-        $bea->setName('BEA');
-        $manager->persist($bea);
+        $company1 = new Company();
+        $company1->setName('BEA');
+        $manager->persist($company1);
 
-        $formationTech = new Company();
-        $formationTech->setName('formation.tech')
+        $company2 = new Company();
+        $company2->setName('formation.tech')
             ->setPostCode('75017');
-        $manager->persist($formationTech);
+        $manager->persist($company2);
 
         for ($i=0; $i<5; $i++) {
             $contact = new Contact();
@@ -39,6 +39,17 @@ class AppFixtures extends Fixture
             if (mt_rand(0, 1)) {
                 $contact->setPhone($faker->phoneNumber);
             }
+
+            // mt_rand(0, 2) retourne un entier aléatoire entre 0 et 2
+            // si 0 on sort du if (0 == false)
+            // sinon on rentre dans le if et $companyIndex contient l'entier (1 ou 2)
+            // $$companyVariable utilise la variable dont le nom est dans la variable $companyVariable
+            // (soit $company1 soit $company2)
+            if ($companyIndex = mt_rand(0, 2)) {
+                $companyVariable = "company$companyIndex";
+                $contact->setCompany($$companyVariable);
+            }
+
             $manager->persist($contact);
         }
 

@@ -4,6 +4,9 @@
 
 {% block body %}
     <h2>Détails d'un contact</h2>
+
+{#    {{ dump(contact) }}#}
+
     <p>
         Prénom : {{ contact.firstName }}
     </p>
@@ -19,5 +22,10 @@
     <p>
         Téléphone : {{ contact.phone }}
     </p>
+    {% endif %}
+    {% if contact.company %}
+        <p>
+            Société : {{ contact.company.name }}
+        </p>
     {% endif %}
 {% endblock %}
