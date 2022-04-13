@@ -14,3 +14,22 @@
 | `GET` et `POST` `/contacts/add`         | `create`    |
 | `GET` et `POST` `/contacts/{id}/delete` | `delete`    |
 | `GET` et `POST` `/contacts/{id}/update` | `update`    |
+
+## Doctrine
+
+Avec la commande `make:entity`, générer une classe `Contact` avec 4 propriétés (en plus id généré automatiquement) :
+
+- `firstName`
+- `lastName`
+- `email` (optionnel)
+- `phone` (optionnel)
+
+Les 4 sont de type string (taille au choix)
+
+Lancer la commande pour updater la table
+
+Compléter `AppFixtures` pour y générer 5 contacts.
+
+Lancer la commande pour insérer les fixtures
+
+Compléter les méthodes `index` et `show` de `ContactController` pour afficher les contacts (la liste et le détail)

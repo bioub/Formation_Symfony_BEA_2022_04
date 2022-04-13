@@ -11,13 +11,13 @@ class Company
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private int $id;
+    protected int $id;
 
     #[ORM\Column(length: 80)]
-    private string $name;
+    protected string $name;
 
     #[ORM\Column(length: 12, nullable: true)]
-    private string $postCode;
+    protected string $postCode;
 
     public function getId(): ?int
     {
@@ -47,4 +47,5 @@ class Company
 
         return $this;
     }
+
 }

@@ -5,3 +5,12 @@
 {% block body %}
     <div id="vue-app"></div>
 {% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('demo_vue') }}
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('demo_vue') }}
+{% endblock %}
